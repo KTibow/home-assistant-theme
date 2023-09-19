@@ -1,0 +1,28 @@
+{
+  "name": "home-assistant-theme",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "prettier --plugin-search-dir . --check . && eslint .",
+    "format": "prettier --plugin-search-dir . --write ."
+  },
+  "devDependencies": {
+    "@iconify-icons/ic": "^1.2.13",
+    "@iconify/svelte": "^3.1.4",
+    "@material/material-color-utilities": "^0.2.7",
+    "@sveltejs/adapter-static": "^2.0.3",
+    "@sveltejs/kit": "^1.25.0",
+    "eslint": "^8.49.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-svelte": "^2.33.1",
+    "m3-svelte": "^2.0.4",
+    "prettier": "^3.0.3",
+    "prettier-plugin-svelte": "^3.0.3",
+    "svelte": "^4.2.0",
+    "vite": "^4.4.9"
+  },
+  "type": "module"
+}

@@ -1,0 +1,20 @@
+html {
+  height: 100%;
+}
+body {
+  background-color: rgb(var(--m3-scheme-background));
+  color: rgb(var(--m3-scheme-on-background));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+
+  margin: 0;
+  height: 100%;
+  --m3-font-display: Rubik, system-ui, sans-serif;
+  --m3-font-headline: Rubik, system-ui, sans-serif;
+  --m3-font-title: Rubik, system-ui, sans-serif;
+  --m3-font-title-weight: 500;
+  --m3-font-body: Rubik, system-ui, sans-serif;
+  --m3-font-label: Rubik, system-ui, sans-serif;
+}
