@@ -96,6 +96,7 @@
 
   primary-color: rgb(var(--m3-scheme-primary))
   text-primary-color: rgb(var(--m3-scheme-on-primary))
+  mdc-checkbox-ink-color: rgb(var(--m3-scheme-on-primary))
   link-text-color: var(--primary-color)
 
   light-primary-color: rgb(var(--m3-scheme-primary-container))
