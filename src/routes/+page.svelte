@@ -68,7 +68,7 @@
       const red = (argb >> 16) & 255;
       const green = (argb >> 8) & 255;
       const blue = argb & 255;
-      return `      m3-scheme-${kebabCase}: ${red} ${green} ${blue}`;
+      return `      m3-scheme-${kebabCase}: ${red}, ${green}, ${blue}`;
     };
     const theme = `Material:
   primary-background-color: rgb(var(--m3-scheme-background))
