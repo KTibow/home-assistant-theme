@@ -8,7 +8,7 @@
     SchemeTonalSpot,
     MaterialDynamicColors,
   } from "@material/material-color-utilities";
-  import { Button, StyleFromScheme } from "m3-svelte";
+  import { Button, ButtonLink, StyleFromScheme } from "m3-svelte";
   let colorInput;
   let color, schemeLight, schemeDark;
   const colors = [
@@ -134,6 +134,7 @@ ${Object.entries(dark)
     <Icon icon={iconCheck} width="24" height="24" />
     <p class="m3-font-headline-small">Use your theme</p>
     <div class="buttons">
+      <ButtonLink type="tonal" href="https://github.com/KTibow/home-assistant-theme">Leave a star</ButtonLink>
       <Button type="tonal" on:click={() => colorInput.showPicker()}>Try again</Button>
       <Button
         type="filled"
