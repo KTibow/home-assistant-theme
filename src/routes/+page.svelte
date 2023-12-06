@@ -110,10 +110,12 @@
   divider-color: transparent
   ha-card-background: rgb(var(--m3-scheme-surface-container))
   ha-card-border-color: transparent
+  ha-card-border-radius: 1.25rem
 
   rgb-primary-background-color: var(--m3-scheme-background)
   rgb-primary-text-color: var(--m3-scheme-on-background)
   rgb-primary-color: var(--m3-scheme-primary)
+  ${colors.map(c => c.replace(/[A-Z]/g, (letter) => `-${letter.toLowerCase()}`)).map(c => `  md-sys-color-${c}: var(--m3-scheme-${c})`)}
 `;
     const modeStyle = `  modes:
     light:
