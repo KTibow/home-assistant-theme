@@ -115,7 +115,7 @@
   rgb-primary-background-color: var(--m3-scheme-background)
   rgb-primary-text-color: var(--m3-scheme-on-background)
   rgb-primary-color: var(--m3-scheme-primary)
-${colors.map(c => c.replace(/[A-Z]/g, (letter) => `-${letter.toLowerCase()}`)).map(c => `  md-sys-color-${c}: var(--m3-scheme-${c})`).join("\n")}
+${colors.map(c => c.replace(/[A-Z]/g, (letter) => `-${letter.toLowerCase()}`)).map(c => `  md-sys-color-${c}: rgb(var(--m3-scheme-${c}))`).join("\n")}
 `;
     const modeStyle = `  modes:
     light:
