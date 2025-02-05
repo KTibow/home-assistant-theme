@@ -1,5 +1,4 @@
 <script>
-  import Icon from "@iconify/svelte";
   import iconCreate from "@iconify-icons/ic/add";
   import iconCheck from "@iconify-icons/ic/check";
   import {
@@ -8,7 +7,7 @@
     SchemeTonalSpot,
     MaterialDynamicColors,
   } from "@material/material-color-utilities";
-  import { Button, ButtonLink, StyleFromScheme } from "m3-svelte";
+  import { Button, ButtonLink, StyleFromScheme, Icon } from "m3-svelte";
   let colorInput;
   let color, schemeLight, schemeDark;
   const colors = [
