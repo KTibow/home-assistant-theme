@@ -5,7 +5,7 @@
 </script>
 
 {#snippet outlink(href: string, text: string)}
-  <a {href} class="outlink">{text}</a>
+  <a {href}>{text}</a>
 {/snippet}
 <div class="branding">
   <div class="row">
@@ -44,7 +44,7 @@
         h1 {
           margin-left: 0;
         }
-        .outlink {
+        a {
           width: 0;
           padding-inline: 0;
           margin-left: 0;
@@ -76,7 +76,7 @@
         margin: 0 0 0 0.5rem;
         transition: var(--transition);
       }
-      .outlink {
+      a {
         display: flex;
         width: calc-size(auto, size);
         padding-inline: 0.5rem;
