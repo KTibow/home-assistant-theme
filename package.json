@@ -10,19 +10,18 @@
     "format": "prettier --plugin-search-dir . --write ."
   },
   "devDependencies": {
-    "@iconify-icons/ic": "^1.2.13",
-    "@iconify/svelte": "^4.2.0",
+    "@ktibow/iconset-material-symbols": "^0.0.1744904588",
     "@material/material-color-utilities": "^0.3.0",
     "@sveltejs/adapter-static": "^3.0.8",
-    "@sveltejs/kit": "^2.17.1",
-    "eslint": "^9.19.0",
-    "eslint-config-prettier": "^10.0.1",
+    "@sveltejs/kit": "^2.21.0",
+    "eslint": "^9.26.0",
+    "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-svelte": "^2.46.1",
-    "m3-svelte": "^3.4.6",
-    "prettier": "^3.4.2",
-    "prettier-plugin-svelte": "^3.3.3",
-    "svelte": "^5.19.7",
-    "vite": "^6.1.0"
+    "m3-svelte": "^3.6.1",
+    "prettier": "^3.5.3",
+    "prettier-plugin-svelte": "^3.4.0",
+    "svelte": "^5.30.1",
+    "vite": "^6.3.5"
   },
   "type": "module"
 }

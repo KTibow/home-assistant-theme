@@ -1,15 +1,103 @@
-<script>
-  import iconCreate from "@iconify-icons/ic/add";
-  import iconCheck from "@iconify-icons/ic/check";
-  import {
-    argbFromHex,
-    Hct,
-    SchemeTonalSpot,
-    MaterialDynamicColors,
-  } from "@material/material-color-utilities";
-  import { Button, ButtonLink, StyleFromScheme, Icon } from "m3-svelte";
-  let colorInput;
-  let color, schemeLight, schemeDark;
+<script lang="ts">
+  import iconCheck from "@ktibow/iconset-material-symbols/check";
+  import { argbFromHex, Hct, SchemeTonalSpot } from "@material/material-color-utilities";
+  import { Button, Icon, genCSS, serializeScheme } from "m3-svelte";
+  import Branding from "./Branding.svelte";
+
+  let css = $state(`
+@media (prefers-color-scheme: light) {
+  :root {
+    color-scheme: light;
+  }
+  :root,
+  ::backdrop {
+    --m3-scheme-primary: 0 0 0;
+    --m3-scheme-on-primary: 226 226 226;
+    --m3-scheme-primary-container: 59 59 59;
+    --m3-scheme-on-primary-container: 255 255 255;
+    --m3-scheme-inverse-primary: 198 198 198;
+    --m3-scheme-secondary: 94 94 94;
+    --m3-scheme-on-secondary: 255 255 255;
+    --m3-scheme-secondary-container: 212 212 212;
+    --m3-scheme-on-secondary-container: 27 27 27;
+    --m3-scheme-tertiary: 59 59 59;
+    --m3-scheme-on-tertiary: 226 226 226;
+    --m3-scheme-tertiary-container: 116 116 116;
+    --m3-scheme-on-tertiary-container: 255 255 255;
+    --m3-scheme-error: 186 26 26;
+    --m3-scheme-on-error: 255 255 255;
+    --m3-scheme-error-container: 255 218 214;
+    --m3-scheme-on-error-container: 65 0 2;
+    --m3-scheme-background: 249 249 249;
+    --m3-scheme-on-background: 27 27 27;
+    --m3-scheme-surface: 249 249 249;
+    --m3-scheme-on-surface: 27 27 27;
+    --m3-scheme-surface-variant: 226 226 226;
+    --m3-scheme-on-surface-variant: 71 71 71;
+    --m3-scheme-inverse-surface: 48 48 48;
+    --m3-scheme-inverse-on-surface: 241 241 241;
+    --m3-scheme-outline: 119 119 119;
+    --m3-scheme-outline-variant: 198 198 198;
+    --m3-scheme-shadow: 0 0 0;
+    --m3-scheme-scrim: 0 0 0;
+    --m3-scheme-surface-dim: 218 218 218;
+    --m3-scheme-surface-bright: 249 249 249;
+    --m3-scheme-surface-container-lowest: 255 255 255;
+    --m3-scheme-surface-container-low: 243 243 243;
+    --m3-scheme-surface-container: 238 238 238;
+    --m3-scheme-surface-container-high: 232 232 232;
+    --m3-scheme-surface-container-highest: 226 226 226;
+    --m3-scheme-surface-tint: 94 94 94;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+  }
+  :root,
+  ::backdrop {
+    --m3-scheme-primary: 255 255 255;
+    --m3-scheme-on-primary: 27 27 27;
+    --m3-scheme-primary-container: 212 212 212;
+    --m3-scheme-on-primary-container: 0 0 0;
+    --m3-scheme-inverse-primary: 94 94 94;
+    --m3-scheme-secondary: 198 198 198;
+    --m3-scheme-on-secondary: 27 27 27;
+    --m3-scheme-secondary-container: 71 71 71;
+    --m3-scheme-on-secondary-container: 226 226 226;
+    --m3-scheme-tertiary: 226 226 226;
+    --m3-scheme-on-tertiary: 27 27 27;
+    --m3-scheme-tertiary-container: 145 145 145;
+    --m3-scheme-on-tertiary-container: 0 0 0;
+    --m3-scheme-error: 255 180 171;
+    --m3-scheme-on-error: 105 0 5;
+    --m3-scheme-error-container: 147 0 10;
+    --m3-scheme-on-error-container: 255 218 214;
+    --m3-scheme-background: 19 19 19;
+    --m3-scheme-on-background: 226 226 226;
+    --m3-scheme-surface: 19 19 19;
+    --m3-scheme-on-surface: 226 226 226;
+    --m3-scheme-surface-variant: 71 71 71;
+    --m3-scheme-on-surface-variant: 198 198 198;
+    --m3-scheme-inverse-surface: 226 226 226;
+    --m3-scheme-inverse-on-surface: 48 48 48;
+    --m3-scheme-outline: 145 145 145;
+    --m3-scheme-outline-variant: 71 71 71;
+    --m3-scheme-shadow: 0 0 0;
+    --m3-scheme-scrim: 0 0 0;
+    --m3-scheme-surface-dim: 19 19 19;
+    --m3-scheme-surface-bright: 57 57 57;
+    --m3-scheme-surface-container-lowest: 14 14 14;
+    --m3-scheme-surface-container-low: 27 27 27;
+    --m3-scheme-surface-container: 31 31 31;
+    --m3-scheme-surface-container-high: 42 42 42;
+    --m3-scheme-surface-container-highest: 53 53 53;
+    --m3-scheme-surface-tint: 198 198 198;
+  }
+}
+`);
+  let yaml = $state("");
+  let colorInput: HTMLInputElement;
   const colors = [
     "primary",
     "onPrimary",
@@ -49,27 +137,20 @@
     "surfaceContainerHighest",
     "surfaceTint",
   ];
-  const loadTheme = (e) => {
-    const serializeScheme = (scheme) => {
-      const out = {};
-      for (const color of colors) {
-        out[color] = MaterialDynamicColors[color].getArgb(scheme);
-      }
-      return out;
-    };
-    color = argbFromHex(e.currentTarget.value);
-    schemeLight = serializeScheme(new SchemeTonalSpot(Hct.fromInt(color), false, 0));
-    schemeDark = serializeScheme(new SchemeTonalSpot(Hct.fromInt(color), true, 0));
-  };
-  const genTheme = (light, dark) => {
-    const genColorVariable = (name, argb) => {
+  const loadTheme = (e: InputEvent & { currentTarget: HTMLInputElement }) => {
+    const color = argbFromHex(e.currentTarget.value);
+    const lightScheme = new SchemeTonalSpot(Hct.fromInt(color), false, 0);
+    const darkScheme = new SchemeTonalSpot(Hct.fromInt(color), true, 0);
+    css = genCSS(serializeScheme(lightScheme), serializeScheme(darkScheme));
+
+    const genColorVariable = (name: string, argb: number) => {
       const kebabCase = name.replace(/[A-Z]/g, (letter) => `-${letter.toLowerCase()}`);
       const red = (argb >> 16) & 255;
       const green = (argb >> 8) & 255;
       const blue = argb & 255;
       return `      m3-scheme-${kebabCase}: ${red}, ${green}, ${blue}`;
     };
-    const theme = `Material:
+    yaml = `Material:
   primary-background-color: rgb(var(--m3-scheme-background))
   lovelace-background: var(--primary-background-color)
   sidebar-background-color: var(--primary-background-color)
@@ -114,34 +195,33 @@
   rgb-primary-background-color: var(--m3-scheme-background)
   rgb-primary-text-color: var(--m3-scheme-on-background)
   rgb-primary-color: var(--m3-scheme-primary)
-${colors.map(c => c.replace(/[A-Z]/g, (letter) => `-${letter.toLowerCase()}`)).map(c => `  md-sys-color-${c}: rgb(var(--m3-scheme-${c}))`).join("\n")}
-`;
-    const modeStyle = `  modes:
+${colors
+  .map((c) => c.replace(/[A-Z]/g, (letter) => `-${letter.toLowerCase()}`))
+  .map((c) => `  md-sys-color-${c}: rgb(var(--m3-scheme-${c}))`)
+  .join("\n")}
+  modes:
     light:
-${Object.entries(light)
+${Object.entries(serializeScheme(lightScheme))
   .map(([name, argb]) => genColorVariable(name, argb))
   .join("\n")}
     dark:
-${Object.entries(dark)
+${Object.entries(serializeScheme(darkScheme))
   .map(([name, argb]) => genColorVariable(name, argb))
   .join("\n")}`;
-    return theme + modeStyle;
   };
 </script>
 
-{#if schemeLight}
-  <StyleFromScheme lightScheme={schemeLight} darkScheme={schemeDark} />
+{@html `<${""}style>${css}</${""}style>`}
+{#if yaml}
   <div class="box">
     <Icon icon={iconCheck} width="24" height="24" />
     <p class="m3-font-headline-small">Use your theme</p>
     <div class="buttons">
-      <ButtonLink type="tonal" href="https://github.com/KTibow/home-assistant-theme">Leave a star</ButtonLink>
       <Button type="tonal" on:click={() => colorInput.showPicker()}>Try again</Button>
       <Button
         type="filled"
         on:click={() => {
-          const theme = genTheme(schemeLight, schemeDark);
-          navigator.clipboard.writeText(theme);
+          navigator.clipboard.writeText(yaml);
         }}
       >
         Copy it
@@ -149,15 +229,12 @@ ${Object.entries(dark)
     </div>
   </div>
 {:else}
-  <div class="box">
-    <Icon icon={iconCreate} width="24" height="24" />
-    <p class="m3-font-headline-small">Create a theme</p>
-    <div class="buttons">
-      <Button type="filled" on:click={() => colorInput.showPicker()}>Choose a color</Button>
-    </div>
+  <div class="pair">
+    <Branding />
+    <Button type="filled" on:click={() => colorInput.showPicker()}>Choose a color</Button>
   </div>
 {/if}
-<input type="color" value={undefined} bind:this={colorInput} on:input={loadTheme} />
+<input type="color" value={undefined} bind:this={colorInput} oninput={loadTheme} />
 
 <style>
   .box {
@@ -177,8 +254,11 @@ ${Object.entries(dark)
     margin-top: 0.5rem;
     gap: 0.5rem;
   }
-  p {
-    margin: 0;
+  .pair {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: auto;
   }
   input {
     position: absolute;

@@ -1,3 +1,5 @@
+@import url("m3-svelte/misc/styles.css");
+@import url("m3-svelte/misc/recommended-styles.css");
 html {
   height: 100%;
 }
@@ -18,4 +20,7 @@ body {
   --m3-font-title-weight: 500;
   --m3-font-body: Rubik, system-ui, sans-serif;
   --m3-font-label: Rubik, system-ui, sans-serif;
+}
+p {
+  margin: 0;
 }
