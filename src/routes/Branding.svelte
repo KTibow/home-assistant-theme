@@ -4,16 +4,13 @@
   const github = "https://github.com/KTibow/home-assistant-theme";
 </script>
 
-{#snippet outlink(href: string, text: string)}
-  <a {href}>{text}</a>
-{/snippet}
 <div class="branding">
   <div class="row">
     <img src="https://ktibow.github.io/favicon.svg" alt="KTibow's" width="16" height="16" />
     <h1>{name}</h1>
     <div style:flex-grow="1"></div>
-    {@render outlink(github, "GitHub")}
-    {@render outlink("https://discord.gg/sRzVYM9b47", "Discord")}
+    <a href={github}>GitHub</a>
+    <a href="https://discord.gg/sRzVYM9b47">Discord</a>
   </div>
   <p>{description}</p>
 </div>
