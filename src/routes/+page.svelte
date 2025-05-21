@@ -217,10 +217,10 @@ ${Object.entries(serializeScheme(darkScheme))
     <Icon icon={iconCheck} width="24" height="24" />
     <p class="m3-font-headline-small">Use your theme</p>
     <div class="buttons">
-      <Button type="tonal" on:click={() => colorInput.showPicker()}>Try again</Button>
+      <Button variant="tonal" click={() => colorInput.showPicker()}>Try again</Button>
       <Button
-        type="filled"
-        on:click={() => {
+        variant="filled"
+        click={() => {
           navigator.clipboard.writeText(yaml);
         }}
       >
@@ -231,7 +231,7 @@ ${Object.entries(serializeScheme(darkScheme))
 {:else}
   <div class="pair">
     <Branding />
-    <Button type="filled" on:click={() => colorInput.showPicker()}>Choose a color</Button>
+    <Button variant="filled" click={() => colorInput.showPicker()}>Choose a color</Button>
   </div>
 {/if}
 <input type="color" value={undefined} bind:this={colorInput} oninput={loadTheme} />
