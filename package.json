@@ -11,16 +11,16 @@
   },
   "devDependencies": {
     "@ktibow/iconset-material-symbols": "^0.0.1747426012",
-    "@material/material-color-utilities": "^0.3.0",
+    "@ktibow/material-color-utilities-nightly": "^0.3.11751852341624",
     "@sveltejs/adapter-static": "^3.0.8",
-    "@sveltejs/kit": "^2.21.1",
-    "eslint": "^9.27.0",
+    "@sveltejs/kit": "^2.22.2",
+    "eslint": "^9.30.1",
     "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-svelte": "^2.46.1",
-    "m3-svelte": "^4.0.0",
-    "prettier": "^3.5.3",
+    "m3-svelte": "^4.5.4",
+    "prettier": "^3.6.2",
     "prettier-plugin-svelte": "^3.4.0",
-    "svelte": "^5.32.1",
+    "svelte": "^5.35.4",
     "vite": "^6.3.5"
   },
   "type": "module"
