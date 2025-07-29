@@ -230,10 +230,10 @@ ${colors.map((color) => genColorVariable(color.name, color.getArgb(darkScheme)))
     <Icon icon={iconCheck} width="24" height="24" />
     <p class="m3-font-headline-small">Use your theme</p>
     <div class="buttons">
-      <Button variant="tonal" click={() => colorInput.showPicker()}>Try again</Button>
+      <Button variant="tonal" onclick={() => colorInput.showPicker()}>Try again</Button>
       <Button
         variant="filled"
-        click={() => {
+        onclick={() => {
           navigator.clipboard.writeText(yaml);
         }}
       >
@@ -244,7 +244,7 @@ ${colors.map((color) => genColorVariable(color.name, color.getArgb(darkScheme)))
 {:else}
   <div class="pair">
     <Branding />
-    <Button variant="filled" click={() => colorInput.showPicker()}>Choose a color</Button>
+    <Button variant="filled" onclick={() => colorInput.showPicker()}>Choose a color</Button>
   </div>
 {/if}
 <input type="color" value={undefined} bind:this={colorInput} oninput={loadTheme} />
