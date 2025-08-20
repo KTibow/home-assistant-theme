@@ -245,6 +245,9 @@ ${colors.map((color) => genColorVariable(color.name, color.getArgb(darkScheme)))
   <div class="pair">
     <Branding />
     <Button variant="filled" onclick={() => colorInput.showPicker()}>Choose a color</Button>
+    <Button href="https://github.com/Nerwyn/material-you-theme">
+      Use the more modern Material You Theme
+    </Button>
   </div>
 {/if}
 <input type="color" value={undefined} bind:this={colorInput} oninput={loadTheme} />
